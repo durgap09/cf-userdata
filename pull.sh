@@ -4,6 +4,8 @@ ACC_ID=$(aws ssm get-parameter --name "ACC_ID" --region us-east-2 --query 'Param
 
 apt install awscli -y
 
+sudo apt remove golang-docker-credential-helpers -y
+
 aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin $ACC_ID.dkr.ecr.us-east-2.amazonaws.com
 
 docker pull $ACC_ID.dkr.ecr.us-east-2.amazonaws.com/qcloud-backend:latest
