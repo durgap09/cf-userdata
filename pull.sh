@@ -6,7 +6,7 @@ apt install awscli -y
 
 sudo apt remove golang-docker-credential-helpers -y
 
-aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin $ACC_ID.dkr.ecr.us-east-2.amazonaws.com
+aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 456325780689.dkr.ecr.us-east-2.amazonaws.com
 
 docker pull $ACC_ID.dkr.ecr.us-east-2.amazonaws.com/qcloud-backend:latest
 
