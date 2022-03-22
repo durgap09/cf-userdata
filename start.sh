@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd /home/ubuntu/
+cd /home/ubuntu/cf-userdata/
 
 # First running the DB container
 echo "Starting Postgres Database Container"
