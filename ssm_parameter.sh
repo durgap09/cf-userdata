@@ -19,9 +19,7 @@ POSTGRES_USER=$PGUSER
 
 POSTGRES_PASSWORD=$PGPWD
 
-POSTGRES_DB=exec_module
-
-PULUMI_ACCESS_TOKEN=pul-4682cf5122771c2beb653e925fa20d8df679d3fc" >> .env
+POSTGRES_DB=exec_module" >> .env
 ## Here above it is taking the values from prompt and then saving in .env
 
 rm setenv.sh  #deleting setenv.sh
