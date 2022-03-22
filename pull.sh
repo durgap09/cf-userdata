@@ -1,5 +1,7 @@
 #!/bin/bash
 
+ACC_ID=$(aws ssm get-parameter --name "URL" --region us-east-2 --query 'Parameter.Value' --output text)
+
 apt install awscli -y
 
 aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 456325780689.dkr.ecr.us-east-2.amazonaws.com
