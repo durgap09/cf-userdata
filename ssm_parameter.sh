@@ -1,3 +1,4 @@
+#!/bin/bash
 URL=$(aws ssm get-parameter --name "URL" --region us-east-2 --query 'Parameter.Value' --output text)
 PGUSER=$(aws ssm get-parameter --name "PGUSER" --region us-east-2 --query 'Parameter.Value' --output text)
 PGPWD=$(aws ssm get-parameter --name "PGPWD" --region us-east-2 --query 'Parameter.Value' --output text)
@@ -12,7 +13,9 @@ touch .env   #creating the .env file
 
 echo "#!/bin/sh
 REACT_APP_API_URL=https://$URL/api/v1/
+
 REACT_APP_10DUKE_PATH=https://$URL/auth
+
 REACT_APP_HIDE_10DUKE=1
 
 POSTGRES_USER=$PGUSER
