@@ -1,4 +1,5 @@
 #!/bin/bash
+#sudo su
 URL=$(aws ssm get-parameter --name "URL" --region us-east-2 --query 'Parameter.Value' --output text)
 PGUSER=$(aws ssm get-parameter --name "PGUSER" --region us-east-2 --query 'Parameter.Value' --output text)
 PGPWD=$(aws ssm get-parameter --name "PGPWD" --region us-east-2 --query 'Parameter.Value' --output text)
@@ -7,6 +8,15 @@ BKNDPORT=$(aws ssm get-parameter --name "BKNDPORT" --region us-east-2 --query 'P
 PLMIPORT=$(aws ssm get-parameter --name "PLMIPORT" --region us-east-2 --query 'Parameter.Value' --output text)
 DTBSPORT=$(aws ssm get-parameter --name "DTBSPORT" --region us-east-2 --query 'Parameter.Value' --output text)
 IP=$(curl http://169.254.169.254/latest/meta-data/local-ipv4)
+
+echo $URL
+echo $PGUSER
+echo $PGPWD
+echo $FRNTPORT
+echo $BKNDPORT
+echo $PLMIPORT
+echo $DTBSPORT
+echo $IP
 
 rm .env
 touch .env   #creating the .env file
@@ -44,4 +54,4 @@ export CHANGE_PASSWORD_LINK="https://$URL/register/"
 export FORGOT_PASSWORD_LINK="https://$URL/forgot_password/"
 export LOGIN_LINK="https://$URL/login/" " >> setenv.sh
 #### Capturing the inputs and saving them in setenv.sh
-
+exit
