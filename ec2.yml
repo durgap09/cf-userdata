@@ -37,7 +37,7 @@ Parameters:
 
   LatestAmiId:
     Type:  'AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>'
-    Default: 'ami-0fb653ca2d3203ac1'
+    Default: 'ImageID'
 
 Resources:
 
