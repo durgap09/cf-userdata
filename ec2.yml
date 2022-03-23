@@ -93,16 +93,10 @@ Resources:
           }    
       Volumes:
         Device: "/dev/sda1"
-        VolumeId: !Ref NewVolume
-  
-  NewVolume:
-  Type: AWS::EC2::Volume
-  Properties:
-    Size: 50
-    AvailabilityZone: 'ap-southeast-2a'
-    Tags:
-      - Key: MyTag
-        Value: TagValue  
+        VolumeId: Type: AWS::EC2::Volume
+        Properties:
+          Size: 50
+   
 
 Outputs:
   InstanceId:
