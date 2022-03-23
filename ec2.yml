@@ -92,14 +92,14 @@ Resources:
       Volumes:
         Device: "/dev/sda1"
         VolumeId: !Ref NewVolume
- NewVolume:
-  Type: AWS::EC2::Volume
-  Properties:
-    Size: 50
-    Tags:
-      - Key: MyTag
-        Value: TagValue
-  DeletionPolicy: Snapshot
+    NewVolume:
+      Type: AWS::EC2::Volume
+      Properties:
+        Size: 50
+        Tags:
+          -   Key: MyTag
+              Value: TagValue
+      DeletionPolicy: Snapshot
 
 Outputs:
   InstanceId:
