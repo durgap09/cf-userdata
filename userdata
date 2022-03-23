@@ -1,0 +1,12 @@
+#!/bin/bash
+exec > >(tee /var/log/user-data.log|logger -t user-data -s 2>/dev/console) 2>&1
+# Sleep for the instance role might not be properly attached
+sleep 15
+sudo apt update
+sudo apt install git -y 
+sudo apt install awscli -y
+apt install awscli -y
+sudo su
+git clone https://github.com/durgap09/cf-userdata.git
+cd /cf-userdata/
+bash run.sh
