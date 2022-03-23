@@ -10,13 +10,13 @@ Parameters:
 
   SubnetId1:
     Description: Subnet Id where instance will create
-    Type: AWS::EC2::Subnet::Id
-    Default: subnet-92a95fef
+    Type: 'AWS::SSM::Parameter::Value<AWS::EC2::Subnet::Id>'
+    Default: SubnetID
 
   KeyName:
     Description: Name of an existing EC2 KeyPair to enable SSH access to the instance
-    Type: AWS::EC2::KeyPair::KeyName
-    Default: orange
+    Type: 'AWS::SSM::Parameter::Value<AWS::EC2::KeyPair::KeyName>'
+    Default: KeyName
     ConstraintDescription: must be the name of an existing EC2 KeyPair.
 
   InstanceType:
