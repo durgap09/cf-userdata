@@ -1,28 +1,28 @@
 #!/bin/bash
 
-cd /home/ubuntu/cf-userdata/
+cd /cf-userdata/
 
 # First running the DB container
 echo "Starting Postgres Database Container"
-sudo docker run --net appmodz --name postgres_db -v qcloud-db:/var/lib/postgresql/data/ -p 5432:5432 --env-file /home/ubuntu/cf-userdata/.env -t -d 456325780689.dkr.ecr.us-east-2.amazonaws.com/qcloud-postgres:latest
+sudo docker run --net appmodz --name postgres_db -v qcloud-db:/var/lib/postgresql/data/ -p 5432:5432 --env-file /cf-userdata/.env -t -d 456325780689.dkr.ecr.us-east-2.amazonaws.com/qcloud-postgres:latest
 
 docker ps -a
 
 # Secont running the Pulumi Container
 echo "Starting Pulumi Backend Container"
-sudo docker run -t --net appmodz --name pulumi_bknd -v qcloud-backend:/home/ -p 3000:6792 --env-file /home/ubuntu/cf-userdata/.env -d 456325780689.dkr.ecr.us-east-2.amazonaws.com/qcloud-pulumi:latest
+sudo docker run -t --net appmodz --name pulumi_bknd -v qcloud-backend:/home/ -p 3000:6792 --env-file /cf-userdata/.env -d 456325780689.dkr.ecr.us-east-2.amazonaws.com/qcloud-pulumi:latest
 
 sudo docker ps -a
 
 # Third running the React-Frontend Container
 echo "Starting React Frontend Container"
-sudo docker run --name react-frontend -d -p 3005:80 --env-file /home/ubuntu/cf-userdata/.env -t 456325780689.dkr.ecr.us-east-2.amazonaws.com/qcloud-frontend:latest
+sudo docker run --name react-frontend -d -p 3005:80 --env-file /cf-userdata/.env -t 456325780689.dkr.ecr.us-east-2.amazonaws.com/qcloud-frontend:latest
 
 sudo docker ps -a
 
 # Building the Backend with Tomcat Image
 echo "Building the Tomcat Backend Image"
-sudo docker build /home/ubuntu/cf-userdata/ -t backend
+sudo docker build /cf-userdata/ -t backend
 
 # Finallyy running the Springboot Backend container
 echo "Starting Springboot Backend Container"
