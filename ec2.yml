@@ -93,9 +93,10 @@ Resources:
           }    
       Volumes:
         Device: "/dev/sda1"
-        VolumeId: Type: AWS::EC2::Volume
-        Properties:
-          Size: 50
+        VolumeId: 
+          - Type: AWS::EC2::Volume
+            Properties:
+              Size: 50
    
 
 Outputs:
