@@ -42,6 +42,7 @@ Resources:
       InstanceType: !Ref 'InstanceType'
       SecurityGroups: [!Ref 'InstanceSecurityGroup']
       KeyName: !Ref 'KeyName'
+      IamInstanceProfile: !Ref 'IAM'
       BlockDeviceMappings:
       - DeviceName: '/dev/sda1'
         Ebs:
