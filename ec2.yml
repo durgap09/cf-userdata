@@ -75,7 +75,10 @@ Resources:
 
         - {
           }
-
+      Tags:
+        - Key: Name
+          Value: 'Qcloud-Instance'
+    
 
   InstanceSecurityGroup:
     Type: AWS::EC2::SecurityGroup
