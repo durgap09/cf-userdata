@@ -1,7 +1,7 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Description: 'AWS CloudFormation Sample Template EC2InstanceWithSecurityGroupSample:
   Create an Amazon EC2 instance running the Ubuntu AMI. This creates an EC2 security group
-  for the instance to give you SSH access. 
+  for the instance to give you SSH access.'
 Parameters:
   KeyName:
     Description: Name of an existing EC2 KeyPair to enable SSH access to the instance
