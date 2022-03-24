@@ -1,7 +1,12 @@
 AWSTemplateFormatVersion: '2010-09-09'
+Metadata:
+  License: Apache-2.0
 Description: 'AWS CloudFormation Sample Template EC2InstanceWithSecurityGroupSample:
-  Create an Amazon EC2 instance running the Ubuntu AMI. This creates an EC2 security group
-  for the instance to give you SSH access.'
+  Create an Amazon EC2 instance running the Amazon Linux AMI. The AMI is chosen based
+  on the region in which the stack is run. This example creates an EC2 security group
+  for the instance to give you SSH access. **WARNING** This template creates an Amazon
+  EC2 instance. You will be billed for the AWS resources used if you create a stack
+  from this template.'
 Parameters:
   KeyName:
     Description: Name of an existing EC2 KeyPair to enable SSH access to the instance
@@ -25,12 +30,15 @@ Parameters:
   LatestAmiId:
     Type:  'AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>'
     Default: ImageID
+ 
   SubnetId:
     Type: 'AWS::SSM::Parameter::Value<AWS::EC2::Subnet::Id>'
     Default: SubnetID
+    #Properties:
+    #  MapPublicIpOnLaunch: 'false'
     Description: SubnetId of an existing subnet (for the primary network) in your Virtual Private Cloud (VPC)
     ConstraintDescription: must be an existing subnet in the selected Virtual Private Cloud.
-  IAM:
+  InstanceProfile:
     Type: 'AWS::SSM::Parameter::Value<AWS::IAM::InstanceProfile>'
     Default: IAM_ROLE
 
@@ -42,12 +50,12 @@ Resources:
       InstanceType: !Ref 'InstanceType'
       SecurityGroups: [!Ref 'InstanceSecurityGroup']
       KeyName: !Ref 'KeyName'
-      IamInstanceProfile: !Ref 'IAM'
       BlockDeviceMappings:
       - DeviceName: '/dev/sda1'
         Ebs:
           VolumeSize: '50'
       ImageId: !Ref 'LatestAmiId'
+      IamInstanceProfile: 'ssp-custom-all'
       UserData:
         Fn::Base64: !Sub
         - |
@@ -68,6 +76,7 @@ Resources:
         - {
           }
 
+
   InstanceSecurityGroup:
     Type: AWS::EC2::SecurityGroup
     Properties:
@@ -85,6 +94,8 @@ Resources:
         FromPort: 443
         ToPort: 443
         CidrIp: !Ref 'SSHLocation'
+
+
 
 Outputs:
   InstanceId:
