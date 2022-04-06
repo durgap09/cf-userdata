@@ -215,6 +215,10 @@ Resources:
             HealthyThresholdCount: 5
             VpcId: !Ref VPC
             Name: "Qcloud-Appmodz-TargetGroup"
+            Targets:
+              - Id:
+                  Ref: "EC2Instance"
+                Port: 80
             HealthCheckEnabled: true
             TargetGroupAttributes:
               -
