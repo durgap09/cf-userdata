@@ -41,11 +41,11 @@ touch setenv.sh    #Creating setenv.sh
 
 echo "#!/bin/sh
 export JDBC_DRIVER_2="org.postgresql.Driver"
-export JDBC_URL_2="jdbc:postgresql://$my_ip:$DTBSPORT/exec_module"
+export JDBC_URL_2="jdbc:postgresql://$IP:$DTBSPORT/exec_module"
 export POSTGRES_USERNAME_2="$PGUSER"
 export POSTGRES_PASSWORD_2="$PGPWD"
 export WORKING_DIR_2="/home/execution-module/"
-export PULUMI_BASE_URL="http://$my_ip:$PLMIPORT/"
+export PULUMI_BASE_URL="http://$IP:$PLMIPORT/"
 export SES_ACCESS_KEY="AKIAQCCE4QSRF6ZQOTA4"
 export SES_SECRET_KEY="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"
 export SES_REGION="ap-south-1"
