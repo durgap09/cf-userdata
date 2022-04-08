@@ -18,7 +18,7 @@ echo $PLMIPORT
 echo $DTBSPORT
 echo $IP
 
-rm .env
+#rm .env
 touch .env   #creating the .env file
 
 echo "#!/bin/sh
@@ -35,7 +35,7 @@ POSTGRES_PASSWORD=$PGPWD
 POSTGRES_DB=exec_module" >> .env
 ## Here above it is taking the values from prompt and then saving in .env
 
-rm setenv.sh  #deleting setenv.sh
+#rm setenv.sh  #deleting setenv.sh
 
 touch setenv.sh    #Creating setenv.sh
 
