@@ -54,13 +54,18 @@ Parameters:
         Type: 'AWS::SSM::Parameter::Value<AWS::CertificateManager::Certificate>'
         Default: Certficate_ARN
 
+    SecurityGroupId:
+        Type: 'AWS::SSM::Parameter::Value<AWS::EC2::SecurityGroup::Id>'
+        Default: ec2_sg_Id
+
 Resources:
 
     EC2Instance:
         Type: AWS::EC2::Instance
         Properties:
             InstanceType: !Ref 'InstanceType'
-            SecurityGroups: [!Ref 'InstanceSecurityGroup']
+            #SecurityGroups: [!Ref 'InstanceSecurityGroup']
+            SecurityGroupIds: [!Ref 'SecurityGroupId']
             KeyName: !Ref 'KeyName'
             BlockDeviceMappings:
             - DeviceName: '/dev/sda1'
@@ -91,48 +96,48 @@ Resources:
                    Value: 'Qcloud-Instance'
 
 
-    InstanceSecurityGroup:
-        Type: AWS::EC2::SecurityGroup
-        Properties:
-            GroupDescription: Enable SSH access via port 22
-            SecurityGroupIngress:
-            -
-                IpProtocol: tcp
-                FromPort: 22
-                ToPort: 22
-                CidrIp: !Ref 'SSHLocation'
-            -
-                IpProtocol: tcp
-                FromPort: 80
-                ToPort: 80
-                CidrIp: !Ref 'SSHLocation'
-            -
-                IpProtocol: tcp
-                FromPort: 443
-                ToPort: 443
-                CidrIp: !Ref 'SSHLocation'
+    #InstanceSecurityGroup:
+    #    Type: AWS::EC2::SecurityGroup
+    #    Properties:
+    #        GroupDescription: Enable SSH access via port 22
+    #        SecurityGroupIngress:
+    #        -
+    #            IpProtocol: tcp
+    #            FromPort: 22
+    #            ToPort: 22
+    #            CidrIp: !Ref 'SSHLocation'
+    #        -
+    #            IpProtocol: tcp
+    #            FromPort: 80
+    #            ToPort: 80
+    #            CidrIp: !Ref 'SSHLocation'
+    #        -
+    #            IpProtocol: tcp
+    #            FromPort: 443
+    #            ToPort: 443
+    #            CidrIp: !Ref 'SSHLocation'
 
-    ALBSecurityGroup:
-        Type: "AWS::EC2::SecurityGroup"
-        Properties:
-            GroupDescription: "security group for ALB"
-            GroupName: "Qcloud-ALB-SG"
-            Tags:
-              -
-                Key: "Name"
-                Value: "Qcloud-ALB-SG"
-            VpcId: !Ref VPC
-            SecurityGroupIngress:
-              -
-                CidrIp: "0.0.0.0/0"
-                FromPort: 80
-                IpProtocol: "tcp"
-                ToPort: 80
-              -
-                CidrIp: "0.0.0.0/0"
-                FromPort: 443
-                IpProtocol: "tcp"
-                ToPort: 443
+    #ALBSecurityGroup:
+    #    Type: "AWS::EC2::SecurityGroup"
+    #    Properties:
+    #        GroupDescription: "security group for ALB"
+    #        GroupName: "Qcloud-ALB-SG"
+    #        Tags:
+    #          -
+    #            Key: "Name"
+    #            Value: "Qcloud-ALB-SG"
+    #        VpcId: !Ref VPC
+    #        SecurityGroupIngress:
+    #          -
+    #            CidrIp: "0.0.0.0/0"
+    #            FromPort: 80
+    #            IpProtocol: "tcp"
+    #            ToPort: 80
+    #          -
+    #            CidrIp: "0.0.0.0/0"
+    #            FromPort: 443
+    #            IpProtocol: "tcp"
+    #            ToPort: 443
 
     ApplicationLoadBalancer:
         Type: "AWS::ElasticLoadBalancingV2::LoadBalancer"
@@ -143,8 +148,8 @@ Resources:
             Subnets:
               - !Ref PublicSubnet1
               - !Ref PublicSubnet2
-            SecurityGroups:
-              - !Ref ALBSecurityGroup
+            #SecurityGroups:
+            #  - !Ref ALBSecurityGroup
             IpAddressType: "ipv4"
             LoadBalancerAttributes:
               -
@@ -274,9 +279,9 @@ Outputs:
         Description: The created TargetGroup 1
         Value: !Ref Test1TargetGroup
 
-    LoadBalancerSecurityGroup:
-        Description: the securty group for the ALB
-        Value: !Ref ALBSecurityGroup
+#    LoadBalancerSecurityGroup:
+#        Description: the securty group for the ALB
+#        Value: !Ref ALBSecurityGroup
 
     InstanceId:
         Description: InstanceId of the newly created EC2 instance
