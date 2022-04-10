@@ -11,12 +11,12 @@ sudo apt update -y
 #sudo ./install auto > /tmp/logfile
 #sudo service codedeploy-agent start
 #sudo service codedeploy-agent status
-wget https://s3.amazonaws.com/amazoncloudwatch-agent/ubuntu/amd64/latest/amazon-cloudwatch-agent.deb
+#wget https://s3.amazonaws.com/amazoncloudwatch-agent/ubuntu/amd64/latest/amazon-cloudwatch-agent.deb
 
-sudo dpkg -i amazon-cloudwatch-agent.deb
+#sudo dpkg -i amazon-cloudwatch-agent.deb
 
-sudo mv config.json /opt/aws/amazon-cloudwatch-agent/bin/
+#sudo mv config.json /opt/aws/amazon-cloudwatch-agent/bin/
 
-sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -c file:/opt/aws/amazon-cloudwatch-agent/bin/config.json -s
+#sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -c file:/opt/aws/amazon-cloudwatch-agent/bin/config.json -s
 
-sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a status
+#sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a status
